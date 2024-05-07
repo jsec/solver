@@ -1,4 +1,4 @@
-from tkinter import Tk, BOTH, Canvas
+from tkinter import Tk, Canvas, BOTH
 
 from line import Line
 
@@ -10,8 +10,8 @@ class Window:
 
         self.__root = Tk()
         self.__root.protocol("WM_DELETE_WINDOW", self.close)
-        self.__canvas = Canvas()
-        self.__canvas.pack()
+        self.__canvas = Canvas(self.__root, bg="white", height=height, width=width)
+        self.__canvas.pack(fill=BOTH, expand=1)
         self.__running = False
 
     def redraw(self):
@@ -27,5 +27,5 @@ class Window:
     def close(self):
         self.__running = False
 
-    def draw_line(self, line: Line, fill_color: str) -> None:
+    def draw_line(self, line: Line, fill_color="black") -> None:
         line.draw(self.__canvas, fill_color)
